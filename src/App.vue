@@ -8,7 +8,10 @@
       <div class="d-flex align-center">
        <v-img 
          alt="Logo de la app"
+         class="shrink mr-2"
+         contain
          :src="require('@/assets/gestion-de-proyectos.png')"
+         transition="scale-transition"
          width="55" 
         />
               
