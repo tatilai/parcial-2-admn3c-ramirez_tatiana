@@ -6,9 +6,7 @@
       dark
     >
       <div class="d-flex align-center">
-       
-
-       
+       <span>Logo</span>       
       </div>
 
       <v-spacer></v-spacer>
