@@ -12,7 +12,8 @@
          contain
          :src="require('@/assets/gestion-de-proyectos.png')"
          transition="scale-transition"
-         width="55" 
+         width="50" 
+         height="64"
         />
               
             
