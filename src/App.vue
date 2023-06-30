@@ -6,11 +6,13 @@
       dark
     >
       <div class="d-flex align-center">
-       <v-img>
+       <v-img 
          alt="Logo de la app"
          :src="require('@/assets/gestion-de-proyectos.png')"
-         width="40"       
-        </v-img>     
+         width="55" 
+        />
+              
+            
       </div>
 
       <v-spacer></v-spacer>
