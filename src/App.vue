@@ -1,13 +1,19 @@
 <template>
 
-
+ <div id="app"> 
   <v-app>    
     <v-app-bar
       app
       color="#26A69A"
       dark
     >
-      <div class="d-flex align-center ml-15">
+
+      <nav>
+          <router-link to= "/gestion">Gestion</router-link>|
+          <router-link to= "/proyectos">Proyectos</router-link>
+          
+     </nav>
+     <!-- <div class="d-flex align-center ml-15">
        <v-img 
          alt="Logo de la app"
          class="shrink mr-2"
@@ -43,27 +49,26 @@
         <span class="mr-2">Proyectos</span>
        
         <v-icon>mdi-file-chart</v-icon>
-      </v-btn>
+      </v-btn>-->
 
 
 
     </v-app-bar>
 
-    <v-main>
-       <HelloWorld msg="Estamos probando vue cli"/>
+    <v-main>       
       <router-view/>
     </v-main>
   </v-app>
-  
+  </div>
   
 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+
 
 export default {
-  components: { HelloWorld },
+  
   name: 'App',
 
   data: () => ({
