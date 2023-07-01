@@ -1,5 +1,10 @@
 <template>
-  <v-app>
+<div id="app">
+  <HeaderApp/>
+  <HelloWorld msg="Estamos probando vue cli"/>
+</div>
+
+  <v-app>    
     <v-app-bar
       app
       color="#6d8c8e"
