@@ -1,12 +1,50 @@
 <template>
 
  <div id="app"> 
-  <v-app>    
+  <v-app> 
+
+   
+     <v-navigation-drawer
+     v-model="drawer"
+     :transition="drawerTransition">   
+   
+      <v-list>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :style="{ marginTop: item.marginTop }" 
+          link
+        >
+
+       
+          <v-list-item-icon>            
+            <v-icon>
+              {{ item.icon }}
+              </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>
+                <router-link :to="item.link">{{ item.title }}
+                  </router-link> 
+              </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      
+    </v-navigation-drawer>       
+
+          
+    
+ 
+
     <v-app-bar
       app
       color="#26A69A"
       dark
     >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <nav>
           <router-link to= "/">Gestion</router-link>|
@@ -72,7 +110,16 @@ export default {
   name: 'App',
 
   data: () => ({
-    //
-  }),
+      drawer: false,  
+      drawerTransition: 'slide-x-transition',    
+      items: [
+          { title: 'Gestion', icon: 'mdi-account-cog',link:'/',marginTop:'50px' },
+          { title: 'Proyectos', icon: 'mdi-file-chart',link:'/about' },
+         
+        ],
+       right:null,
+    }),
+
+    
 };
 </script>
