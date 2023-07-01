@@ -29,7 +29,7 @@
      
         <span class="mr-2">Gestión</span>
        
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon>mdi-account-cog</v-icon>
       </v-btn>
        <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -39,7 +39,7 @@
      
         <span class="mr-2">Proyectos</span>
        
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon>mdi-file-chart</v-icon>
       </v-btn>
 
 
