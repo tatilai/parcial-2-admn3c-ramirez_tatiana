@@ -1,6 +1,42 @@
-<template>
+<!--<template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+  </div>
+</template>-->
+
+
+<template>
+  <div>
+    <v-text-field
+      v-model="nombre"
+      :counter="10"
+      :rules="reglasNombre"
+      label="Nombre del proyecto"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="responsable"
+      :rules="reglasResponsable"
+      label="Responsable"
+      required
+    ></v-text-field>
+
+    <v-container fluid>
+      <v-textarea
+        autocomplete="descripcion"
+        label="Descripcion del proyecto"
+      ></v-textarea>
+    </v-container>
+
+     <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="validate"
+    >
+     Continuar
+    </v-btn>
   </div>
 </template>
 
