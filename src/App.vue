@@ -49,11 +49,11 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <nav>
+       <!-- <nav>
           <router-link to= "/">Gestion</router-link>|
           <router-link to= "/about">Proyectos</router-link>
           
-     </nav>
+     </nav>-->
 
       <div class="d-flex align-center ml-100">
        <v-img 
