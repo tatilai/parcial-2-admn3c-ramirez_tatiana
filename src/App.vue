@@ -6,6 +6,7 @@
    
      <v-navigation-drawer
      v-model="drawer"
+     :transition="drawerTransition"
      absolute
      left
      temporary>   
@@ -48,12 +49,13 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <nav>
+        <nav>
           <router-link to= "/">Gestion</router-link>|
           <router-link to= "/about">Proyectos</router-link>
           
      </nav>
-     <!-- <div class="d-flex align-center ml-15">
+
+      <div class="d-flex align-center ml-100">
        <v-img 
          alt="Logo de la app"
          class="shrink mr-2"
@@ -70,7 +72,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
+     <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
