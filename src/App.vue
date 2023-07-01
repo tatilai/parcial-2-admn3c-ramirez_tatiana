@@ -9,8 +9,8 @@
     >
 
       <nav>
-          <router-link to= "/gestion">Gestion</router-link>|
-          <router-link to= "/proyectos">Proyectos</router-link>
+          <router-link to= "/">Gestion</router-link>|
+          <router-link to= "/about">Proyectos</router-link>
           
      </nav>
      <!-- <div class="d-flex align-center ml-15">
