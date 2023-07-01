@@ -48,14 +48,17 @@
     </v-app-bar>
 
     <v-main>
+      <HelloWorld msg="Hola"/>
       <router-view/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld';
 
 export default {
+  components: { HelloWorld },
   name: 'App',
 
   data: () => ({
