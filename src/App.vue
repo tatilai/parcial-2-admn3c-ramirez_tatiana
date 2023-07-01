@@ -4,7 +4,7 @@
   <v-app>    
     <v-app-bar
       app
-      color="#6d8c8e"
+      color="#26A69A"
       dark
     >
       <div class="d-flex align-center ml-15">
