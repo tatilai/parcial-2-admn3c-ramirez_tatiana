@@ -1,8 +1,5 @@
 <template>
-<div id="app">
-  <HeaderApp/>
-  <HelloWorld msg="Estamos probando vue cli"/>
-</div>
+
 
   <v-app>    
     <v-app-bar
@@ -53,10 +50,13 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld msg="Hola"/>
+       <HelloWorld msg="Estamos probando vue cli"/>
       <router-view/>
     </v-main>
   </v-app>
+  
+  
+
 </template>
 
 <script>
