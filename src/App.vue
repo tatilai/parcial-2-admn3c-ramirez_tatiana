@@ -15,6 +15,7 @@
          width="50" 
          height="64"
         />
+        <span>ProjectPro+</span>
               
             
       </div>
