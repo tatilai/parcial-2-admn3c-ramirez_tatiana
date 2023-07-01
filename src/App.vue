@@ -6,7 +6,9 @@
    
      <v-navigation-drawer
      v-model="drawer"
-     :transition="drawerTransition">   
+     absolute
+     left
+     temporary>   
    
       <v-list>
         <v-list-item
