@@ -5,7 +5,7 @@
       color="#6d8c8e"
       dark
     >
-      <div class="d-flex align-center">
+      <div class="d-flex align-center ml-15">
        <v-img 
          alt="Logo de la app"
          class="shrink mr-2"
