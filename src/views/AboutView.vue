@@ -149,7 +149,7 @@ export default {
       checkbox: false,
     };
   },
-  // Resto del código del componente
+  
 };
 </script>
 
