@@ -41,14 +41,14 @@
       required     
     ></v-text-field>
     <v-text-field
-      v-model="responsableProyecto"
+      v-model="telefonoProyecto"
       :rules="phoneRules"
       label="Ingrese su telefono"
       required      
     ></v-text-field>
 
      <v-text-field
-      v-model="responsableProyecto"
+      v-model="emailProyecto"
       :rules="emailRules"
       label="Ingrese su e-mail"
       required      
@@ -118,6 +118,7 @@
        </v-simple-table> -->   
 
 
+   <template v-if="formularioEnviado">
      <v-card
     class="mx-auto mt-5 mb-5"
     max-width="400"
@@ -139,25 +140,23 @@
     <v-card-text class="text--primary">
   
     <v-list-item four-line>
-      <v-list-item-content>
-        <v-list-item-subtitle>Three-line item</v-list-item-subtitle>
-        <v-list-item-subtitle>
-          Secondary line text Lorem ipsum dolor sit amet,
-        </v-list-item-subtitle>
-        <v-list-item-subtitle>
-          consectetur adipiscing elit.
-        </v-list-item-subtitle>
-         <v-list-item-subtitle>
-          consectetur adipiscing elit.
-        </v-list-item-subtitle>
-      </v-list-item-content>
+       <v-list-item-content>
+          <v-list-item-subtitle>Nombre:</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ datosFormulario.nombre }}</v-list-item-subtitle>
+          <v-list-item-subtitle>Email:</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ datosFormulario.email }}</v-list-item-subtitle>
+          <v-list-item-subtitle>Teléfono:</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ datosFormulario.telefono }}</v-list-item-subtitle>
+          <v-list-item-subtitle>Comentario:</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ datosFormulario.comentario }}</v-list-item-subtitle>
+        </v-list-item-content>
     </v-list-item>
 
     </v-card-text>
 
    
   </v-card>
-       
+   </template>    
     
 
  
@@ -182,7 +181,8 @@ export default {
       customWidth: '1138px',
       customHeight: '870px', 
           select: null,
-           contacto: {
+         formularioEnviado: false,
+           datosFormulario: {
             nombre:"",
             email:"",
             telefono:"",
@@ -212,7 +212,9 @@ export default {
      
       descriptionRules: [
         v => (v && v.length >= 15) || "El comentario debe tener al menos 15 caracteres"
-      ]
+      ],
+      enviado: false,
+      errores: [],
     };    
    },
     
@@ -273,6 +275,14 @@ export default {
       }
 
        let objetoLocal = {};
+       this.datosFormulario = {
+      nombreProyecto: this.contacto.nombre,
+      emailProyecto: this.contacto.email,
+      telefono: this.contacto.telefono,
+      comentario: this.contacto.comentario
+      };
+
+      this.formularioEnviado = true;
 
 
       console.log(this.errores)
