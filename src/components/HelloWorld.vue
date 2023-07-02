@@ -17,7 +17,7 @@
   blur="0"
   class="mx-auto"
 ></v-img>
-<div class="p-50"> 
+<div class="max-w-md mx-auto"> 
    <v-text-field
       v-model="nombre"
       :counter="10"
