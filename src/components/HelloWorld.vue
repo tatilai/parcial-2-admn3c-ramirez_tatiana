@@ -121,15 +121,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="item in desserts"
-          :key="item.name"
-        >
-          <td>{{ item.nombre }}</td>
-          <td>{{ item. descripciónDelproyecto }}</td>
-          <td>{{ item.responsableDelProyecto }}</td>
-        </tr>
-      </tbody>
+          <tr v-for="proyecto in listaProyectos" :key="proyecto.nombreProyecto">
+            <td>{{ proyecto.nombreProyecto }}</td>
+            <td>{{ proyecto.descripcionProyecto }}</td>
+            <td>{{ proyecto.responsableProyecto }}</td>
+          </tr>
+        </tbody>
     </template>
   </v-simple-table>
    
@@ -147,6 +144,7 @@ export default {
       name: '',
       email: '',
       description: '',
+      listaProyectos: [],
       nameRules: [
         (v) => !!v || 'El nombre del proyecto es requerido',
         (v) => (v && v.length <= 10) || 'El nombre del proyecto debe tener máximo 10 caracteres',
@@ -176,6 +174,11 @@ export default {
         if (this.proyectoModificado === null) {
           this.validar = true;
           this.vacio = false;
+            listaProyectos.push(proyecto);
+
+        localStorage.setItem('proyectos', JSON.stringify(listaProyectos));
+
+        this.listaProyectos = listaProyectos;
 
           const proyecto = {
             nombreProyecto: this.nombreProyecto,
