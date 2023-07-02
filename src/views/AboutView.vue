@@ -74,7 +74,7 @@
       ></v-textarea>
     </v-container>
 
-    <template v-if="formularioEnviado">
+   <!-- <template v-if="formularioEnviado">
      <v-card
     class="mx-auto mt-5 mb-5"
     max-width="400"
@@ -85,10 +85,9 @@
       height="200px"
      :src="require('@/assets/lista-de-verificacion_2.png')"
     
-    ></v-img>
-        
+    ></v-img>       
     
-    </template>
+    </template>-->
 
 
 
@@ -100,6 +99,45 @@
     </v-btn>
   </v-form>
   </v-card>
+
+  <p class="font-weight-bold w-400 display-1 text-center my-4">
+     Info del formulario enviado
+    </p>
+
+    <v-simple-table dark class="my-20 mx-auto">
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Nombre
+          </th>
+          <th class="text-left">
+           e-mail
+          </th>
+          <th class="text-left">
+           telefono
+          </th>  
+          <th class="text-left">
+          comentario
+          </th>    
+         </tr>       
+        </thead>         
+     
+
+
+      <tbody>
+          <tr v-for="proyecto in listaProyectos" :key="proyecto.nombreProyecto">
+            <td>{{ proyecto.nombreProyecto }}</td>
+            <td>{{ proyecto.descripcionProyecto }}</td>
+            <td>{{ proyecto.responsableProyecto }}</td>
+           
+          </tr>
+        </tbody>
+     </template>
+       </v-simple-table>
+        
+    
+
  
 
 
