@@ -35,20 +35,20 @@
     style="height: 70px"
    class="mx-10">
      <v-text-field
-      v-model="nombreProyecto"
+      v-model="datosFormulario.nombre"
       :rules="nameRules"      
       label="Ingrese nombre del equipo"
       required     
     ></v-text-field>
     <v-text-field
-      v-model="telefonoProyecto"
+      v-model="datosFormulario.telefono"
       :rules="phoneRules"
       label="Ingrese su telefono"
       required      
     ></v-text-field>
 
      <v-text-field
-      v-model="emailProyecto"
+      v-model="datosFormulario.email"
       :rules="emailRules"
       label="Ingrese su e-mail"
       required      
@@ -64,7 +64,7 @@
 
     <v-container fluid>
       <v-textarea
-      v-model="descripcionProyecto"
+      v-model="datosFormulario.descripcion"
        :rules="descriptionRules"        
        label="Comentarios"
       ></v-textarea>
@@ -236,9 +236,9 @@ export default {
         return;
       }}
 
-      if(!this.contacto.nombre){
+      if(!this.datosFormulario.nombre){
 
-       console.log(!this.contacto.nombre)
+       console.log(!this.datosFormulario.nombre)
        this.errores.push('El nombre del equipo es obligatorio');
 
       }
@@ -246,7 +246,7 @@ export default {
         this.errores.push('NOMBRE: Debe tener más de 5 caracteres.');
          
       }
-      if(!this.contacto.comentario){
+      if(!this.datosFormulario.comentario){
         this.errores.push('COMENTARIO:debe escribir su comentario');
       }
 
@@ -268,18 +268,24 @@ export default {
         this.errores.push('El comentario tiene que tener mas de 15 caracteres');
       }
 
-      if (!this.contacto.confirmacion) {
+      if (!this.datosFormulario.confirmacion) {
 
         this.errores.push('Debes confirmar que los datos son correctos')
           
       }
 
-       let objetoLocal = {};
+       this.objetoLocal = {
+         comentario: this.datosFormulario.comentario,
+         nombre: this.datosFormulario.nombre,
+         email: this.datosFormulario.email,
+         telefono: this.datosFormulario.telefono,
+         rol: this.datosFormulario.rolSeleccionado
+       };
        this.datosFormulario = {
-      nombreProyecto: this.contacto.nombre,
-      emailProyecto: this.contacto.email,
+      nombre: this.contacto.nombre,
+      email: this.contacto.email,
       telefono: this.contacto.telefono,
-      comentario: this.contacto.comentario
+      descripcion: this.contacto.descripcion
       };
 
       this.formularioEnviado = true;
