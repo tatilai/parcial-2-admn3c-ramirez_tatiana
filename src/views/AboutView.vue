@@ -1,6 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+   <p class="font-weight-bold w-400 display-1 text-center my-4">
+      Formulario de contacto entre los equipos
+    </p>
+      <v-card
+    class="mx-auto"
+    max-width="344"
+  >
   </div>
 </template>
 

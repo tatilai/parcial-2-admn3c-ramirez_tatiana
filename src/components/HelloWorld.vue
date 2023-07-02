@@ -20,39 +20,47 @@
   ></v-img>
 
 <div class="formularioUno"> 
-  <v-form ref="form"
-   v-model="valid"
+  <v-form 
+   ref="form"
+    v-model="valid"
     lazy-validation>
-   <v-text-field
-      v-model="nombre"
+     <v-text-field
+      v-model="name"
+      :error-messages="nameErrors"
       :counter="10"
-      :rules="reglasNombre"
       label="Nombre del proyecto"
       required
+      @input="$v.name.$touch()"
+      @blur="$v.name.$touch()"
     ></v-text-field>
-
     <v-text-field
-      v-model="responsable"
-      :rules="reglasResponsable"
+      v-model="email"
+      :error-messages="emailErrors"
       label="Responsable"
       required
+      @input="$v.email.$touch()"
+      @blur="$v.email.$touch()"
     ></v-text-field>
 
     <v-container fluid>
       <v-textarea
+      v-model="email"
+      :error-messages="emailErrors"
         autocomplete="descripcion"
         label="Descripcion del proyecto"
       ></v-textarea>
     </v-container>
 
      <v-btn
-      :disabled="!valid"
-      color="#FFE082"
       class="mr-4"
-      @click="validate"
+      @click="submit"
+      color="#FFE082"
     >
-     Continuar
-    </v-btn> 
+      Continuar
+    </v-btn>
+    <v-btn @click="clear">
+      clear
+    </v-btn>
     </v-form>
     
     </div>
@@ -63,37 +71,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
-  data: () => ({
-    valid: true,
-    name: '',
-    nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-    ],
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
-   
-  }),
+/*<script>
 
-  methods: {
-    validate() {
-      this.$refs.form.validate()
-    },
-    
-  },
-}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+ Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .formularioUno{
    margin: 0 auto;
