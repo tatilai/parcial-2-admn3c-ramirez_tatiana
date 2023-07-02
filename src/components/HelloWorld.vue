@@ -64,11 +64,12 @@
             Nombre
           </th>
           <th class="text-left">
-            Descripción
+            Descripción del proyecto
           </th>
           <th class="text-left">
             Responsable del proyecto
-          </th> 
+          </th>          
+
            <v-dialog>
              <v-card>            
             <v-card-actions>
@@ -102,7 +103,8 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-          <v-icon
+        <template v-slot:item.actions="{ item }">
+      <v-icon
         small
         class="mr-2"
         @click="editItem(item)"
@@ -115,6 +117,9 @@
       >
         mdi-delete
       </v-icon>
+    </template>
+        
+
         </tr>
       </thead>
       <tbody>
@@ -122,8 +127,9 @@
           v-for="item in desserts"
           :key="item.name"
         >
-          <td>{{ item.name }}</td>
-          <td>{{ item.calories }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item. descripciónDelproyecto }}</td>
+          <td>{{ item.responsableDelProyecto }}</td>
         </tr>
       </tbody>
     </template>
@@ -220,6 +226,14 @@ export default {
 
       localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
     },
+
+      editar:function(index){
+            this.nombreProyecto = this.listaProyectos[index].nombreProyecto;
+            this.responsableProyecto = this.listaProyectos[index].responsableProyecto;
+            this.descripcionProyecto = this.listaProyectos[index].descripcionProyecto;
+            this.proyectoModificado = index;
+
+        },
   },
   mounted() {
     const proyectosGuardados = localStorage.getItem('proyectos');
