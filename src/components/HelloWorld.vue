@@ -7,7 +7,7 @@
 
 <template>
   <div>
-     <p class="font-weight-bold w-400 display-1 mx-auto">
+     <p class="font-weight-bold w-400 display-1 text-center my-4">
       Equipo 1
     </p>
    <v-img
@@ -17,7 +17,8 @@
   blur=0
   class="mx-auto"
 ></v-img>
-    <v-text-field
+<div class="m-4"> 
+   <v-text-field
       v-model="nombre"
       :counter="10"
       :rules="reglasNombre"
@@ -46,7 +47,9 @@
       @click="validate"
     >
      Continuar
-    </v-btn>
+    </v-btn> 
+    </div>
+   
   </div>
 </template>
 
