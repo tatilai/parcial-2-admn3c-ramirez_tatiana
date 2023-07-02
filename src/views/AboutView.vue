@@ -214,8 +214,10 @@ export default {
         v => (v && v.length >= 15) || "El comentario debe tener al menos 15 caracteres"
       ],
       enviado: false,
-      errores: [],
-    };    
+      errores: [],      
+    };  
+    
+    
    },
     
      methods: {
@@ -274,6 +276,13 @@ export default {
           
       }
 
+      
+       this.datosFormulario = {
+      nombre: this.contacto.nombre,
+      email: this.contacto.email,
+      telefono: this.contacto.telefono,
+      descripcion: this.contacto.descripcion
+      };
        this.objetoLocal = {
          comentario: this.datosFormulario.comentario,
          nombre: this.datosFormulario.nombre,
@@ -281,13 +290,6 @@ export default {
          telefono: this.datosFormulario.telefono,
          rol: this.datosFormulario.rolSeleccionado
        };
-       this.datosFormulario = {
-      nombre: this.contacto.nombre,
-      email: this.contacto.email,
-      telefono: this.contacto.telefono,
-      descripcion: this.contacto.descripcion
-      };
-
       this.formularioEnviado = true;
 
 
