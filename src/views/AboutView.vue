@@ -1,11 +1,19 @@
 
 <template>
   <div>
-    <h1>Formulario de Contacto</h1>
+    <p class="font-weight-bold w-400 display-1 text-center my-4">
+      Formulario de contacto entre los equipos
+    </p>
 
-    <v-card>
+    <v-card class="mx-auto" :width="customWidth" :height="customHeight" color="#C8E6C9" outlined>
       <v-card-media>
-        <img src="/ruta/a/la/imagen.jpg" alt="Imagen de ejemplo" />
+            <v-img
+              :src="require('@/assets/trabajo.png')"
+              alt="gente sentada"
+              :max-width="355"
+              :max-height="289"
+              class="my-4 v-image__image--preload"
+            ></v-img>
       </v-card-media>
 
       <v-card-text>
@@ -110,7 +118,7 @@ export default {
       ],
     };
   },
-  
+
    methods: {
     guardar() {
       if (!this.$refs.form.validate()) {
