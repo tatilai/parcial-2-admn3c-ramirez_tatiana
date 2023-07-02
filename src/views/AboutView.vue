@@ -1,371 +1,142 @@
 
-
-
-  
 <template>
-  <div class="about">
-   <p class="font-weight-bold w-400 display-1 text-center my-4">
-      Formulario de contacto entre los equipos
-    </p>
+  <div>
+    <h1>Formulario de Contacto</h1>
 
-     <v-card class="mx-auto" :width="customWidth" :height="customHeight" color="#C8E6C9" outlined>
-      <v-row> 
-      <v-col cols="6">      
-          <v-card-text>
-            <p class="font-weight-medium my-5 mx-4">
-              Aquí tienes el espacio para dejar un mensaje a los miembros de tu equipo sobre lo que te pareció el proyecto y si le deseas hacer cambios
-            </p>
-         </v-card-text>
-         </v-col>
-         <v-col cols="6"> 
-            <v-img
-              :src="require('@/assets/trabajo.png')"
-              alt="gente sentada"
-              :max-width="355"
-              :max-height="289"
-              class="my-4 v-image__image--preload"
-            ></v-img>
-          </v-col>
-        </v-row>   
-    
+    <v-card>
+      <v-card-media>
+        <img src="/ruta/a/la/imagen.jpg" alt="Imagen de ejemplo" />
+      </v-card-media>
 
-       
+      <v-card-text>
+        <v-form @submit.prevent="guardar" ref="form">
+          <v-text-field
+            v-model="equipo"
+            label="Nombre del equipo"
+            :rules="equipoRules"
+            required
+          ></v-text-field>
 
+          <v-text-field
+            v-model="telefono"
+            label="Teléfono"
+            :rules="telefonoRules"
+            required
+          ></v-text-field>
 
-      <v-form  
-   ref="form"
-   v-model="valid"
-   lazy-validation
-    style="height: 70px"
-   class="mx-10">
-     <v-text-field
-      v-model="datosFormulario.nombre"
-      :rules="nameRules"      
-      label="Ingrese nombre del equipo"
-      required     
-    ></v-text-field>
-    <v-text-field
-      v-model="datosFormulario.telefono"
-      :rules="phoneRules"
-      label="Ingrese su telefono"
-      required      
-    ></v-text-field>
+          <v-text-field
+            v-model="email"
+            label="Email"
+            :rules="emailRules"
+            required
+          ></v-text-field>
 
-     <v-text-field
-      v-model="datosFormulario.email"
-      :rules="emailRules"
-      label="Ingrese su e-mail"
-      required      
-    ></v-text-field>
+          <v-select
+            v-model="rol"
+            :items="roles"
+            label="Rol en el equipo"
+            :rules="rolRules"
+            required
+          ></v-select>
 
-        <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Indique qué rol desempeña en el equipo"
-      required
-    ></v-select>
+          <v-textarea
+            v-model="comentarios"
+            label="Comentarios"
+          ></v-textarea>
 
-    <v-container fluid>
-      <v-textarea
-      v-model="datosFormulario.descripcion"
-       :rules="descriptionRules"        
-       label="Comentarios"
-      ></v-textarea>
-    </v-container>
+          <v-btn type="submit" color="primary">Enviar</v-btn>
+        </v-form>
+      </v-card-text>
+    </v-card>
 
-   <!-- <template v-if="formularioEnviado">
-     <v-card
-    class="mx-auto mt-5 mb-5"
-    max-width="400"
+    <h2>Información del formulario enviado</h2>
 
-  ></v-card>
-    <v-img
-      class="white--text align-end"
-      height="200px"
-     :src="require('@/assets/lista-de-verificacion_2.png')"
-    
-    ></v-img>       
-    
-    </template>-->
-
-
-
-     <v-btn
-      class="mr-4 mb-6"
-      @click="guardar"
-      color="#FFE082">
-    Enviar
-    </v-btn>
-  </v-form>
-  </v-card>
-
-  <p class="font-weight-bold w-400 display-1 text-center my-4">
-     Info del formulario enviado
-    </p>
-
-    <v-simple-table dark class="my-20 formularioDos" >
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">
-            Nombre
-          </th>
-          <th class="text-left">
-           e-mail
-          </th>
-          <th class="text-left">
-           telefono
-          </th>  
-          <th class="text-left">
-          comentario
-          </th>    
-         </tr>       
-        </thead>         
-     
-
-
-      <tbody>
-          <tr v-for="datos in listaDatos" :key="datos.nombre">
-            <td>{{datos.nombre }}</td>
-            <td>{{datos.telefono }}</td>
-            <td>{{datos.email }}</td>
-             <td>{{datos.descripcion }}</td> 
-          </tr>
-        </tbody>
-     </template>
-       </v-simple-table>
-        
-    
-
- 
-
-
-     <!-- <p class="font-weight-bold w-400 display-1 text-center my-4">
-      Lista de Proyectos
-    </p>
-
-   <v-simple-table dark class="my-20">
-    <template v-slot:default>
-      <thead>
-        <tr>
-          <th class="text-left">
-          Nombre del equipo
-          </th>
-          <th class="text-left">
-          Telefono
-          </th>
-          <th class="text-left">
-           e-mail
-          </th>  
-          <th class="text-left">
-          comentarios
-          </th>     
-         </tr>       
-        </thead>         
-     
-
-
-      <tbody>
-          <tr v-for="proyecto in listaProyectos" :key="proyecto.nombreProyecto">
-            <td>{{ proyecto.nombreProyecto }}</td>
-            <td>{{ proyecto.descripcionProyecto }}</td>
-            <td>{{ proyecto.responsableProyecto }}</td>
-           
-          </tr>
-        </tbody>
-     </template>
-       </v-simple-table> -->   
-
-   
-
- 
+    <v-card>
+      <v-card-text>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Comentarios</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(datos, index) in listaDatos" :key="index">
+                <td>{{ datos.equipo }}</td>
+                <td>{{ datos.telefono }}</td>
+                <td>{{ datos.email }}</td>
+                <td>{{ datos.rol }}</td>
+                <td>{{ datos.comentarios }}</td>
+              </tr>
+              <tr v-if="listaDatos.length === 0">
+                <td :colspan="5" class="text-center">No hay datos disponibles</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
-   
-
-
-   
-
-
-
- 
-
-
 <script>
 export default {
-
-   data() {
+  data() {
     return {
-      customWidth: '1138px',
-      customHeight: '870px', 
-         valid:false,         
-         datosFormulario: {
-            nombre:"",
-            email:"",
-            telefono:"",
-            descripcion:"",                     
-                   
-                     
-           }, 
-          
-           objetoLocal: {},
-      items: [
-        'Lider',
-        'Desarrollador',
-        'Diseñador',
-        'Tester',
+      equipo: '',
+      telefono: '',
+      email: '',
+      rol: '',
+      comentarios: '',
+      listaDatos: [],
+      roles: ['Lider', 'Desarrollador', 'Diseñador', 'Tester'],
+      equipoRules: [
+        v => !!v || 'El nombre del equipo es obligatorio',
       ],
-      checkbox: false,
-
-      nameRules: [v => !!v || "Nombre del equipo es obligatorio"],
-      phoneRules: [
-        v => !!v || "Teléfono es obligatorio",
-        v => /^\d{10}$/.test(v) || "Debe ingresar un formato valido por ejemplo:1565986574"
+      telefonoRules: [
+        v => !!v || 'El teléfono es obligatorio',
+        v => /^\d{10}$/.test(v) || 'El teléfono debe tener 10 dígitos',
       ],
       emailRules: [
-        v => !!v || "Email es obligatorio",
-        v => /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(v) ||
-          "Formato de email inválido"
+        v => !!v || 'El email es obligatorio',
+        v => /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(v) || 'Formato de email inválido',
       ],
-     
-      descriptionRules: [
-        v => (v && v.length >= 15) || "El comentario debe tener al menos 15 caracteres"
+      rolRules: [
+        v => !!v || 'Debe seleccionar un rol',
       ],
-       listaDatos: [],
-           
-    };  
-    
-    
-   },
-    
-     methods: {
-     guardar() {
-
-      
-
-      if (this.$refs.form.validate()) {  
-       if (
-        this.nombreProyecto.trim().length === 0 ||
-        this.responsableProyecto.trim().length === 0 ||
-        this.emailProyecto.trim().length === 0
-      ) {
-        // Mostrar mensaje de error
-        this.valid = false;
-        this.mostrarError = true;
+    };
+  },
+  methods: {
+    guardar() {
+      if (!this.$refs.form.validate()) {
         return;
-      }}
-
-      if(!this.datosFormulario.nombre){
-
-       console.log(!this.datosFormulario.nombre)
-       this.errores.push('El nombre del equipo es obligatorio');
-
-      }
-      if(this.contacto.nombre && this.contacto.nombre.length < 5) {
-        this.errores.push('NOMBRE: Debe tener más de 5 caracteres.');
-         
-      }
-      if(!this.datosFormulario.comentario){
-        this.errores.push('COMENTARIO:debe escribir su comentario');
       }
 
-      let emailValido= /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-
-      if( !emailValido.test(this.contacto.email) ){
-        
-        this.errores.push('EMAIL: no se corresponde con un valor válido.')
-
-        }
-
-      let telefonoValido= /^\d{10}$/;
-      if(!telefonoValido.test(this.contacto.telefono)){
-        this.errores.push('Debe ingresar un formato valido por ejemplo:1565986574')
-      }  
-
-
-      if(this.contacto.comentario&& this.contacto.comentario.length<15){
-        this.errores.push('El comentario tiene que tener mas de 15 caracteres');
-      }
-
-      if (!this.datosFormulario.confirmacion) {
-
-        this.errores.push('Debes confirmar que los datos son correctos')
-          
-      }
-
-      
-       this.datosFormulario = {
-      nombre: this.contacto.nombre,
-      email: this.contacto.email,
-      telefono: this.contacto.telefono,
-      descripcion: this.contacto.descripcion
+      const datosFormulario = {
+        equipo: this.equipo,
+        telefono: this.telefono,
+        email: this.email,
+        rol: this.rol,
+        comentarios: this.comentarios,
       };
-       this.listaDatos.push ({
-         descripcion: this.datosFormulario.descripcion,
-         nombre: this.datosFormulario.nombre,
-         email: this.datosFormulario.email,
-         telefono: this.datosFormulario.telefono,
-         rol: this.datosFormulario.rolSeleccionado
-       });
-       
-           // Reiniciar los datos del formulario
-        this.datosFormulario.nombre = '';
-        this.datosFormulario.telefono = '';
-        this.datosFormulario.email = '';
-        this.datosFormulario.descripcion = '';    
-    
-      /*this.formularioEnviado = true;*/
 
+      this.listaDatos.push(datosFormulario);
 
-      console.log(this.errores)
+      this.equipo = '';
+      this.telefono = '';
+      this.email = '';
+      this.rol = '';
+      this.comentarios = '';
 
-      if(this.errores.length==0){
-        this.enviado=true;
-        this.objetoLocal={
-          comentario:this.contacto.comentario,
-          nombre:this.contacto.nombre,
-          email:this.contacto.email,
-          telefono:this.contacto.telefono,
-          rol: this.contacto.rolSeleccionado
-        }
-        if(!localStorage.dato){
-          this.arr=[]
-        }else{
-          this.enviado=false;
-          this.arr=JSON.parse(localStorage.getItem("datoComentario")) || []; 
-
-        
-
-        }
-
-         /*   this.arr.push(this.objetoLocal)
-            localStorage.setItem("datoComentario",JSON.stringify(this.arr))*/
-            // Guardar los datos en el almacenamiento local
-        localStorage.setItem('listaDatos', JSON.stringify(this.listaDatos));
-
-            
-            
-      }
-
-    }
-
-   
-    
+      this.$refs.form.resetValidation();
+    },
   },
-  mounted() {
-    // Cargar los datos del almacenamiento local al iniciar la página
-    const storedData = localStorage.getItem('listaDatos');
-    if (storedData) {
-      this.listaDatos = JSON.parse(storedData);
-    }
-  },
-
 };
-
 </script>
-
 <style scoped>
 .v-image__image--preload{
   filter: blur(0);
