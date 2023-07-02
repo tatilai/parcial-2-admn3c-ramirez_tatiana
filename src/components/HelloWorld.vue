@@ -51,6 +51,83 @@
       color="#FFE082">
       Continuar
     </v-btn>
+
+     <p class="font-weight-bold w-400 display-1 text-center my-4">
+      Lista de Proyectos
+    </p>
+
+    <v-simple-table dark class="my-20">
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Nombre
+          </th>
+          <th class="text-left">
+            Descripción
+          </th>
+          <th class="text-left">
+            Responsable del proyecto
+          </th> 
+           <v-dialog>
+             <v-card>            
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="close"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="save"
+              >
+                Save
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialogDelete" max-width="500px">
+          <v-card>
+            <v-card-title class="text-h5">¿Estás seguro de querer eliminar el item?</v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+          <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in desserts"
+          :key="item.name"
+        >
+          <td>{{ item.name }}</td>
+          <td>{{ item.calories }}</td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
    
     </v-form>
     
