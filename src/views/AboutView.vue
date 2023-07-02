@@ -61,7 +61,7 @@
      Info del formulario enviado
     </p>
 
-    <v-card>
+    <v-card class="my-20 formularioDos" >
       <v-card-text>
         <v-simple-table>
           <template v-slot:default>
@@ -161,6 +161,7 @@ export default {
 
 .formularioDos{
    margin: 0 auto;
+   background-color: rgb(255, 223, 181);
  
 }
 
