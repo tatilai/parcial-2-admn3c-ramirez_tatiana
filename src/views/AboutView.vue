@@ -126,11 +126,11 @@
 
 
       <tbody>
-          <tr v-for="proyecto in listaDatos" :key="proyecto.nombreProyecto">
-            <td>{{ proyecto.nombreProyecto }}</td>
-            <td>{{ proyecto.descripcionProyecto }}</td>
-            <td>{{ proyecto.responsableProyecto }}</td>
-           
+          <tr v-for="datosFormulario in listaDatos" :key="datosFormulario.datosFormulario.nombre">
+            <td>{{datosFormulario.nombre }}</td>
+            <td>{{datosFormulario.telefono }}</td>
+            <td>{{datosFormulario.email }}</td>
+             <td>{{datosFormulario.descripcion }}</td> 
           </tr>
         </tbody>
      </template>
