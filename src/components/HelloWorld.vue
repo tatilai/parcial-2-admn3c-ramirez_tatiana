@@ -82,18 +82,80 @@ export default {
       ],
     };
   },
-  methods: {
+     
+    methods: {
     continuarProyecto() {
       if (this.$refs.form.validate()) {
-        // Realizar acciones cuando el formulario es válido
-        console.log('El formulario es válido');
+        if (
+          this.nombreProyecto.trim().length === 0 ||
+          this.descripcionProyecto.trim().length === 0 ||
+          this.responsableProyecto.trim().length === 0
+        ) {
+          this.validar = false;
+          this.mostrarError = true;
+          return;
+        }
+
+        if (this.proyectoModificado === null) {
+          this.validar = true;
+          this.vacio = false;
+
+          const proyecto = {
+            nombreProyecto: this.nombreProyecto,
+            responsableProyecto: this.responsableProyecto,
+            descripcionProyecto: this.descripcionProyecto,
+            estado: 'En progreso'
+          };
+
+          const proyectosGuardados = localStorage.getItem('proyectos');
+          let listaProyectos = [];
+
+          if (proyectosGuardados) {
+            listaProyectos = JSON.parse(proyectosGuardados);
+          }
+
+          listaProyectos.push(proyecto);
+
+          localStorage.setItem('proyectos', JSON.stringify(listaProyectos));
+
+          this.listaProyectos = listaProyectos;
+
+          this.nombreProyecto = '';
+          this.responsableProyecto = '';
+          this.descripcionProyecto = '';
+          this.filtro = '';
+        } else {
+          this.listaProyectos[this.proyectoModificado].nombreProyecto = this.nombreProyecto;
+          this.listaProyectos[this.proyectoModificado].responsableProyecto = this.responsableProyecto;
+          this.listaProyectos[this.proyectoModificado].descripcionProyecto = this.descripcionProyecto;
+          this.proyectoModificado = null;
+
+          localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
+
+          this.nombreProyecto = '';
+          this.responsableProyecto = '';
+          this.descripcionProyecto = '';
+        }
+
+        console.log("continuarProyecto");
       } else {
-        // Mostrar errores de validación
         console.log('El formulario contiene errores');
       }
     },
+    eliminar(index) {
+      this.listaProyectos.splice(index, 1);
+
+      localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
+    },
+  },
+  mounted() {
+    const proyectosGuardados = localStorage.getItem('proyectos');
+    if (proyectosGuardados) {
+      this.listaProyectos = JSON.parse(proyectosGuardados);
+    }
   },
 };
+  
 
 
  
