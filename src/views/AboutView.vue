@@ -95,6 +95,8 @@
 export default {
   data() {
     return {
+       customWidth: '1138px',
+      customHeight: '870px', 
       equipo: '',
       telefono: '',
       email: '',
@@ -152,6 +154,7 @@ export default {
 <style scoped>
 .v-image__image--preload{
   filter: blur(0);
+  margin: auto;
 }
 
 .formularioDos{
