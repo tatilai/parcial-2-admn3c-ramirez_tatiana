@@ -110,7 +110,8 @@ export default {
       ],
     };
   },
-  methods: {
+  
+   methods: {
     guardar() {
       if (!this.$refs.form.validate()) {
         return;
@@ -136,7 +137,10 @@ export default {
     },
   },
 };
+  
 </script>
+
+
 <style scoped>
 .v-image__image--preload{
   filter: blur(0);
