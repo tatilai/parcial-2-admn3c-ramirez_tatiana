@@ -54,11 +54,7 @@
    
     </v-form>
     
-    </div>
-
-
-
-   
+    </div>   
   </div>
 </template>
 
