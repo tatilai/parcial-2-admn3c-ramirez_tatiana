@@ -75,13 +75,13 @@
     class="mx-auto mt-5 mb-5"
     max-width="400"
 
-  >
+  ></v-card>
     <v-img
       class="white--text align-end"
       height="200px"
      :src="require('@/assets/lista-de-verificacion_2.png')"
     
-    >
+    ></v-img>
         
     
 
