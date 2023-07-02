@@ -14,6 +14,14 @@
       Aqui tienes el espacio para dejar un mensaje a los miembros de tu equipo sobre lo que te parecio el proyecto y si le deseas hacer cambios
     </p>
 
+
+    <v-img
+     src="src/assets/trabajo.png"
+     alt="Descripción de la imagen"
+     aspect-ratio="500/408"
+      contain
+    ></v-img>
+
     <v-card-actions>
       <v-btn
         outlined
