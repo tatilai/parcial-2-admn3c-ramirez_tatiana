@@ -16,9 +16,11 @@
    max-width="205"
    blur="0"
    class="mx-auto"
+   id="imagenUno"
   ></v-img>
 
 <div class="formularioUno"> 
+  <v-form ref="form">
    <v-text-field
       v-model="nombre"
       :counter="10"
@@ -49,6 +51,8 @@
     >
      Continuar
     </v-btn> 
+    </v-form>
+    
     </div>
 
 
@@ -92,5 +96,8 @@ export default {
 .formularioUno{
    margin: 0 auto;
   max-width: 800px;
+}
+#imagenUno{
+  filter: blur(0);
 }
 </style>
