@@ -137,8 +137,16 @@
 export default {
   data() {
     return {
-      customWidth: '1138px', // Establece el ancho personalizado aquí
-      customHeight: '572px', // Establece el alto personalizado aquí
+      customWidth: '1138px',
+      customHeight: '572px', 
+          select: null,
+      items: [
+        'Lider',
+        'Desarrollador',
+        'Diseñador',
+        'Tester',
+      ],
+      checkbox: false,
     };
   },
   // Resto del código del componente
