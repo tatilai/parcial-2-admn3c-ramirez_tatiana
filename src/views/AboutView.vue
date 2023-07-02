@@ -142,13 +142,13 @@
     <v-list-item four-line>
        <v-list-item-content>
           <v-list-item-subtitle>Nombre:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ datosFormulario.nombre }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ objetoLocal.nombre }}</v-list-item-subtitle>
           <v-list-item-subtitle>Email:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ datosFormulario.email }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ objetoLocal.email }}</v-list-item-subtitle>
           <v-list-item-subtitle>Teléfono:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ datosFormulario.telefono }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ objetoLocal.telefono }}</v-list-item-subtitle>
           <v-list-item-subtitle>Comentario:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ datosFormulario.comentario }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ objetoLocal.comentario }}</v-list-item-subtitle>
         </v-list-item-content>
     </v-list-item>
 
@@ -314,7 +314,7 @@ export default {
 
         }
 
-            this.arr.push(objetoLocal)
+            this.arr.push(this.objetoLocal)
             localStorage.setItem("datoComentario",JSON.stringify(this.arr))
 
             
