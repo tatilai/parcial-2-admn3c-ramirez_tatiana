@@ -306,7 +306,7 @@ export default {
           this.arr=[]
         }else{
           this.enviado=false;
-          this.arr=JSON.parse(localStorage.getItem("datoComentario"))
+          this.arr=JSON.parse(localStorage.getItem("datoComentario")) || []; 
 
         
 
