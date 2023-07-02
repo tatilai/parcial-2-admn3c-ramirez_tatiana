@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="about">
    <p class="font-weight-bold w-400 display-1 text-center my-4">
@@ -139,7 +141,7 @@
 
  
   </div>
-</template>  
+</template>
 
    
 
