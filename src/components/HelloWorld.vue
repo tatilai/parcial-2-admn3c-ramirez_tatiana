@@ -14,10 +14,10 @@
   :lazy-src="require('@/assets/equipo_1.png')"
   max-height="205"
   max-width="205"
-  blur=0
+  blur="0"
   class="mx-auto"
 ></v-img>
-<div class="m-4"> 
+<div class="p-50"> 
    <v-text-field
       v-model="nombre"
       :counter="10"
