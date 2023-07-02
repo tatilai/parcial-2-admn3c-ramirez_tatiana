@@ -68,73 +68,65 @@
           </th>
           <th class="text-left">
             Responsable del proyecto
-          </th>          
+          </th>      
+         </tr>       
+        </thead>         
+     
 
-           <v-dialog>
-             <v-card>            
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="close"
-              >
-                Cancel
-              </v-btn>
-              <v-btn
-                color="blue darken-1"
-                text
-                @click="save"
-              >
-                Save
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
 
-        <v-dialog v-model="dialogDelete" max-width="500px">
-          <v-card>
-            <v-card-title class="text-h5">¿Estás seguro de querer eliminar el item?</v-card-title>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      
-  <v-icon
-    small
-    class="mr-2"
-    @click="editItem(item)"
-  >
-    mdi-pencil
-  </v-icon>
-  <v-icon
-    small
-    @click="deleteItem(item)"
-  >
-    mdi-delete
-  </v-icon>       
-
-        </tr>
-      </thead>
       <tbody>
           <tr v-for="proyecto in listaProyectos" :key="proyecto.nombreProyecto">
             <td>{{ proyecto.nombreProyecto }}</td>
             <td>{{ proyecto.descripcionProyecto }}</td>
             <td>{{ proyecto.responsableProyecto }}</td>
+           
           </tr>
         </tbody>
-    </template>
-  </v-simple-table>
+     </template>
+       </v-simple-table>
+        
+    
+
+   
+<!-- <v-dialog v-model="dialog" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">Editar Proyecto</v-card-title>
+        <v-card-text>
+          <v-text-field v-model="editedItem.nombreProyecto" label="Nombre del proyecto"></v-text-field>
+          <v-text-field v-model="editedItem.responsableProyecto" label="Responsable"></v-text-field>
+          <v-textarea v-model="editedItem.descripcionProyecto" label="Descripción del proyecto"></v-textarea>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="close">Cancelar</v-btn>
+          <v-btn color="blue darken-1" text @click="save">Guardar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogDelete" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">Confirmar Eliminación</v-card-title>
+        <v-card-text>
+          ¿Estás seguro de que deseas eliminar este proyecto?
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
+          <v-btn color="blue darken-1" text @click="deleteItemConfirm">Eliminar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>-->
+  
+
+
    
     </v-form>
     
     </div>   
   </div>
 </template>
+
 
 <script>
 export default {
@@ -144,6 +136,8 @@ export default {
       nombreProyecto: '',
       responsableProyecto: '',
       descripcionProyecto: '',
+      dialog:false,
+      editedItem:null,
       listaProyectos: [],
       nameRules: [
         (v) => !!v || 'El nombre del proyecto es requerido',
@@ -238,39 +232,49 @@ export default {
         console.log('El formulario contiene errores');
       }
     },
+
+     editItem(item) {
+    this.editedItem = item;
+    this.dialog = true;
+  },
+
+  deleteItem(item) {
+    this.editedItem = item;
+    this.dialogDelete = true;
+  },
+
+  deleteItemConfirm() {
+    const index = this.listaProyectos.indexOf(this.editedItem);
+    if (index !== -1) {
+      this.listaProyectos.splice(index, 1);
+      localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
+    }
+    this.closeDelete();
+  },
+
+  closeDelete() {
+    this.dialogDelete = false;
+    this.editedItem = null;
+  },
+
+   save() {
+    // Validar y guardar los cambios en el proyecto editado
+    if (this.editedItem) {
+      const index = this.listaProyectos.indexOf(this.editedItem);
+      if (index !== -1) {
+        this.listaProyectos.splice(index, 1, this.editedItem);
+        localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
+      }
+    }
+    this.close();
+  },
+
+  close() {
+    this.dialog = false;
+    this.editedItem = null;
+  },
    
-      editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
-      },
-
-      deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
-      },
-
-      deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
-        this.closeDelete()
-      },
-
-      close () {
-        this.dialog = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
-
-      closeDelete () {
-        this.dialogDelete = false
-        this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
-          this.editedIndex = -1
-        })
-      },
+     
   },
   mounted() {
     const proyectosGuardados = localStorage.getItem('proyectos');
