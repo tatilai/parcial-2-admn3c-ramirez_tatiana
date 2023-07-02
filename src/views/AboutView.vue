@@ -71,9 +71,9 @@
 
      <v-btn
       class="mr-4 my-4"
-      @click="continuarProyecto"
+      @click="guardar"
       color="#FFE082">
-      Continuar
+    Enviar
     </v-btn>
   </v-form>
   </v-card>
@@ -135,11 +135,20 @@
 
 <script>
 export default {
-  data() {
+
+   data() {
     return {
       customWidth: '1138px',
       customHeight: '572px', 
           select: null,
+           contacto: {
+            nombre:"",
+            email:"",
+            telefono:"",
+            rolSeleccionado:"",                     
+            confirmacion:null        
+                     
+           }, 
       items: [
         'Lider',
         'Desarrollador',
@@ -147,10 +156,90 @@ export default {
         'Tester',
       ],
       checkbox: false,
+
     };
-  },
-  
+   },
+    
+     methods: {
+    guardar() {
+
+      this.enviado=true;  //queremos evaluar que los mensajes se muestren solo cuando se ejecute la funcion
+      this.errores=[]  //vaciamos el array de errores
+
+      if(!this.contacto.nombre){
+
+       console.log(!this.contacto.nombre)
+       this.errores.push('El nombre del equipo es obligatorio');
+
+      }
+      if(this.contacto.nombre && this.contacto.nombre.length < 5) {
+        this.errores.push('NOMBRE: Debe tener más de 5 caracteres.');
+         
+      }
+      if(!this.contacto.comentario){
+        this.errores.push('COMENTARIO:debe escribir su comentario');
+      }
+
+      let emailValido= /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+      if( !emailValido.test(this.contacto.email) ){
+        
+        this.errores.push('EMAIL: no se corresponde con un valor válido.')
+
+        }
+
+      let telefonoValido= /^\d{10}$/;
+      if(!telefonoValido.test(this.contacto.telefono)){
+        this.errores.push('Debe ingresar un formato valido por ejemplo:1565986574')
+      }  
+
+
+      if(this.contacto.comentario&& this.contacto.comentario.length<15){
+        this.errores.push('El comentario tiene que tener mas de 15 caracteres');
+      }
+
+      if (!this.contacto.confirmacion) {
+
+        this.errores.push('Debes confirmar que los datos son correctos')
+          
+      }
+
+
+      console.log(this.errores)
+
+      if(this.errores.length==0){
+        this.enviado=true;
+        objetoLocal={
+          comentario:this.contacto.comentario,
+          nombre:this.contacto.nombre,
+          email:this.contacto.email,
+          telefono:this.contacto.telefono,
+          rol: this.contacto.rolSeleccionado
+        }
+        if(!localStorage.dato){
+          this.arr=[]
+        }else{
+          this.enviado=false;
+          this.arr=JSON.parse(localStorage.getItem("datoComentario"))
+
+        
+
+        }
+
+            this.arr.push(objetoLocal)
+            localStorage.setItem("datoComentario",JSON.stringify(this.arr))
+
+            
+            
+      }
+
+    }
+
+   
+    
+  }
 };
+
 </script>
 
 <style scoped>

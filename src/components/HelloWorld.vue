@@ -267,12 +267,12 @@ export default {
       }
     }
     this.close();
-  },
+    },
 
-  close() {
+   close() {
     this.dialog = false;
     this.editedItem = null;
-  },
+    },
    
      
   },
