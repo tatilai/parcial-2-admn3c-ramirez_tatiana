@@ -25,13 +25,13 @@
    v-model="valid"
    lazy-validation>
      <v-text-field
-      v-model="name"
+      v-model="nombreProyecto"
       :rules="nameRules"      
       label="Nombre del proyecto"
       required     
     ></v-text-field>
     <v-text-field
-      v-model="email"
+      v-model="responsableProyecto"
       :rules="emailRules"
       label="Responsable"
       required      
@@ -39,7 +39,7 @@
 
     <v-container fluid>
       <v-textarea
-      v-model="description"
+      v-model="descripcionProyecto"
        :rules="descriptionRules"        
        label="Descripcion del proyecto"
       ></v-textarea>
@@ -141,9 +141,9 @@ export default {
   data() {
     return {
       valid: false,
-      name: '',
-      email: '',
-      description: '',
+      nombreProyecto: '',
+      responsableProyecto: '',
+      descripcionProyecto: '',
       listaProyectos: [],
       nameRules: [
         (v) => !!v || 'El nombre del proyecto es requerido',
@@ -171,6 +171,24 @@ export default {
           return;
         }
 
+         const proyecto = {
+          nombreProyecto: this.nombreProyecto,
+          responsableProyecto: this.responsableProyecto,
+          descripcionProyecto: this.descripcionProyecto,
+          estado: 'En progreso',
+        };
+         const proyectosGuardados = localStorage.getItem('proyectos');
+        let listaProyectos = [];
+
+        if (proyectosGuardados) {
+            listaProyectos = JSON.parse(proyectosGuardados);
+          }         
+
+       listaProyectos.push(proyecto);
+
+       localStorage.setItem('proyectos', JSON.stringify(listaProyectos));
+       this.listaProyectos = listaProyectos;
+
         if (this.proyectoModificado === null) {
           this.validar = true;
           this.vacio = false;
@@ -178,9 +196,9 @@ export default {
 
         localStorage.setItem('proyectos', JSON.stringify(listaProyectos));
 
-        this.listaProyectos = listaProyectos;
+        
 
-          const proyecto = {
+         /* const proyecto = {
             nombreProyecto: this.nombreProyecto,
             responsableProyecto: this.responsableProyecto,
             descripcionProyecto: this.descripcionProyecto,
@@ -188,17 +206,15 @@ export default {
           };
 
           const proyectosGuardados = localStorage.getItem('proyectos');
-          let listaProyectos = [];
+          let listaProyectos = [];*/
 
-          if (proyectosGuardados) {
-            listaProyectos = JSON.parse(proyectosGuardados);
-          }
+          
 
-          listaProyectos.push(proyecto);
+          
 
-          localStorage.setItem('proyectos', JSON.stringify(listaProyectos));
+          
 
-          this.listaProyectos = listaProyectos;
+          
 
           this.nombreProyecto = '';
           this.responsableProyecto = '';
@@ -263,10 +279,6 @@ export default {
     }
   },
 };
-  
-
-
- 
 
 </script>
 
