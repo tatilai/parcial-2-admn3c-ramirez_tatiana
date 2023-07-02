@@ -16,10 +16,10 @@
 
 
     <v-img
-     src="src/assets/trabajo.png"
+    :lazy-src="require('@/assets/trabajo.png')"
      alt="Descripción de la imagen"
-     aspect-ratio="500/408"
-      contain
+     aspect-ratio="16/9"
+    :fluid="true"
     ></v-img>
 
     <v-card-actions>
