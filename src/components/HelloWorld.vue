@@ -20,47 +20,38 @@
   ></v-img>
 
 <div class="formularioUno"> 
-  <v-form 
+  <v-form  
    ref="form"
-    v-model="valid"
-    lazy-validation>
+   v-model="valid"
+   lazy-validation>
      <v-text-field
       v-model="name"
-      :error-messages="nameErrors"
-      :counter="10"
+      :rules="nameRules"      
       label="Nombre del proyecto"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
+      required     
     ></v-text-field>
     <v-text-field
       v-model="email"
-      :error-messages="emailErrors"
+      :rules="emailRules"
       label="Responsable"
-      required
-      @input="$v.email.$touch()"
-      @blur="$v.email.$touch()"
+      required      
     ></v-text-field>
 
     <v-container fluid>
       <v-textarea
-      v-model="email"
-      :error-messages="emailErrors"
-        autocomplete="descripcion"
-        label="Descripcion del proyecto"
+      v-model="description"
+       :rules="descriptionRules"        
+       label="Descripcion del proyecto"
       ></v-textarea>
     </v-container>
 
      <v-btn
       class="mr-4"
-      @click="submit"
-      color="#FFE082"
-    >
+      @click="continuarProyecto"
+      color="#FFE082">
       Continuar
     </v-btn>
-    <v-btn @click="clear">
-      clear
-    </v-btn>
+   
     </v-form>
     
     </div>
@@ -71,11 +62,45 @@
   </div>
 </template>
 
-/*<script>
+<script>
+export default {
+  data() {
+    return {
+      valid: false,
+      name: '',
+      email: '',
+      description: '',
+      nameRules: [
+        (v) => !!v || 'El nombre del proyecto es requerido',
+        (v) => (v && v.length <= 10) || 'El nombre del proyecto debe tener máximo 10 caracteres',
+      ],
+      emailRules: [
+        (v) => !!v || 'El responsable es requerido',
+      ],
+      descriptionRules: [
+        (v) => !!v || 'La descripción del proyecto es requerida',
+      ],
+    };
+  },
+  methods: {
+    continuarProyecto() {
+      if (this.$refs.form.validate()) {
+        // Realizar acciones cuando el formulario es válido
+        console.log('El formulario es válido');
+      } else {
+        // Mostrar errores de validación
+        console.log('El formulario contiene errores');
+      }
+    },
+  },
+};
+
+
+ 
 
 </script>
 
- Add "scoped" attribute to limit CSS to this component only -->
+ <!--Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .formularioUno{
    margin: 0 auto;
