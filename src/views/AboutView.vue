@@ -4,7 +4,7 @@
       Formulario de contacto entre los equipos
     </p>
 
-     <v-card class="mx-auto" :width="customWidth" color="#C8E6C9" outlined>
+     <v-card class="mx-auto" :width="customWidth" :height="customHeight" color="#C8E6C9" outlined>
       <v-row> 
       <v-col cols="6">      
           <v-card-text>
@@ -32,6 +32,7 @@
    ref="form"
    v-model="valid"
    lazy-validation
+    style="height: 70px"
    class="mx-10">
      <v-text-field
       v-model="nombreProyecto"
@@ -70,7 +71,7 @@
     </v-container>
 
      <v-btn
-      class="mr-4 my-4"
+      class="mr-4 mb-6"
       @click="guardar"
       color="#FFE082">
     Enviar
@@ -80,11 +81,11 @@
  
 
 
-     <p class="font-weight-bold w-400 display-1 text-center my-4">
+     <!-- <p class="font-weight-bold w-400 display-1 text-center my-4">
       Lista de Proyectos
     </p>
 
-    <v-simple-table dark class="my-20">
+   <v-simple-table dark class="my-20">
     <template v-slot:default>
       <thead>
         <tr>
@@ -114,8 +115,60 @@
           </tr>
         </tbody>
      </template>
-       </v-simple-table>    
+       </v-simple-table> -->   
+
+
+     <v-card
+    class="mx-auto"
+    max-width="400"
+  >
+    <v-img
+      class="white--text align-end"
+      height="200px"
+      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+    >
+      <v-card-title>Info del formulario enviado</v-card-title>
+    </v-img>
+
+    <v-card-subtitle class="pb-0">
+      Number 10
+    </v-card-subtitle>
+
+    <v-card-text class="text--primary">
   
+    <v-list-item four-line>
+      <v-list-item-content>
+        <v-list-item-subtitle>Three-line item</v-list-item-subtitle>
+        <v-list-item-subtitle>
+          Secondary line text Lorem ipsum dolor sit amet,
+        </v-list-item-subtitle>
+        <v-list-item-subtitle>
+          consectetur adipiscing elit.
+        </v-list-item-subtitle>
+         <v-list-item-subtitle>
+          consectetur adipiscing elit.
+        </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn
+        color="orange"
+        text
+      >
+        Share
+      </v-btn>
+
+      <v-btn
+        color="orange"
+        text
+      >
+        Explore
+      </v-btn>
+    </v-card-actions>
+  </v-card>
        
     
 
@@ -139,7 +192,7 @@ export default {
    data() {
     return {
       customWidth: '1138px',
-      customHeight: '572px', 
+      customHeight: '870px', 
           select: null,
            contacto: {
             nombre:"",
