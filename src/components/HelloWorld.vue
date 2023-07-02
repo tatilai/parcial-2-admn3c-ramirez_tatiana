@@ -7,6 +7,7 @@
 
 <template>
   <div>
+    <span>Equipo 1</span>
     <v-text-field
       v-model="nombre"
       :counter="10"
