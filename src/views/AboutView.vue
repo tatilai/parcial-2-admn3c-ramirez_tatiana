@@ -297,7 +297,7 @@ export default {
 
       if(this.errores.length==0){
         this.enviado=true;
-        objetoLocal={
+        this.objetoLocal={
           comentario:this.contacto.comentario,
           nombre:this.contacto.nombre,
           email:this.contacto.email,
