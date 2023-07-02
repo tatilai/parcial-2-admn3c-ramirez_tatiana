@@ -161,7 +161,7 @@ export default {
       nameRules: [v => !!v || "Nombre del equipo es obligatorio"],
       phoneRules: [
         v => !!v || "Teléfono es obligatorio",
-        v => /^\d{10}$/.test(v) || "Formato de teléfono inválido"
+        v => /^\d{10}$/.test(v) || "Debe ingresar un formato valido por ejemplo:1565986574"
       ],
       emailRules: [
         v => !!v || "Email es obligatorio",
