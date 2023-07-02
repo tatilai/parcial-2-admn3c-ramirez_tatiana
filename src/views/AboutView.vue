@@ -70,6 +70,24 @@
       ></v-textarea>
     </v-container>
 
+    <template v-if="formularioEnviado">
+     <v-card
+    class="mx-auto mt-5 mb-5"
+    max-width="400"
+
+  >
+    <v-img
+      class="white--text align-end"
+      height="200px"
+     :src="require('@/assets/lista-de-verificacion_2.png')"
+    
+    >
+        
+    
+
+
+
+
      <v-btn
       class="mr-4 mb-6"
       @click="guardar"
@@ -117,47 +135,7 @@
      </template>
        </v-simple-table> -->   
 
-
-   <template v-if="formularioEnviado">
-     <v-card
-    class="mx-auto mt-5 mb-5"
-    max-width="400"
-
-  >
-    <v-img
-      class="white--text align-end"
-      height="200px"
-     :src="require('@/assets/lista-de-verificacion_2.png')"
-    
-    >
-      <v-card-title style="color:black">Info del formulario enviado</v-card-title>
-    </v-img>
-
-    <v-card-subtitle class="pb-0">
-      Number 10
-    </v-card-subtitle>
-
-    <v-card-text class="text--primary">
-  
-    <v-list-item four-line>
-       <v-list-item-content>
-          <v-list-item-subtitle>Nombre:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ objetoLocal.nombre }}</v-list-item-subtitle>
-          <v-list-item-subtitle>Email:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ objetoLocal.email }}</v-list-item-subtitle>
-          <v-list-item-subtitle>Teléfono:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ objetoLocal.telefono }}</v-list-item-subtitle>
-          <v-list-item-subtitle>Comentario:</v-list-item-subtitle>
-          <v-list-item-subtitle>{{ objetoLocal.comentario }}</v-list-item-subtitle>
-        </v-list-item-content>
-    </v-list-item>
-
-    </v-card-text>
-
    
-  </v-card>
-   </template>    
-    
 
  
   </div>
