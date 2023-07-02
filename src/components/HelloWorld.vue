@@ -103,22 +103,20 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        small
-        @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
-    </template>
-        
+      
+  <v-icon
+    small
+    class="mr-2"
+    @click="editItem(item)"
+  >
+    mdi-pencil
+  </v-icon>
+  <v-icon
+    small
+    @click="deleteItem(item)"
+  >
+    mdi-delete
+  </v-icon>       
 
         </tr>
       </thead>
@@ -221,19 +219,39 @@ export default {
         console.log('El formulario contiene errores');
       }
     },
-    eliminar(index) {
-      this.listaProyectos.splice(index, 1);
+   
+      editItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
 
-      localStorage.setItem('proyectos', JSON.stringify(this.listaProyectos));
-    },
+      deleteItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
 
-      editar:function(index){
-            this.nombreProyecto = this.listaProyectos[index].nombreProyecto;
-            this.responsableProyecto = this.listaProyectos[index].responsableProyecto;
-            this.descripcionProyecto = this.listaProyectos[index].descripcionProyecto;
-            this.proyectoModificado = index;
+      deleteItemConfirm () {
+        this.desserts.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
 
-        },
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete () {
+        this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
   },
   mounted() {
     const proyectosGuardados = localStorage.getItem('proyectos');
