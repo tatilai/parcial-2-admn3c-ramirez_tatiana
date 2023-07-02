@@ -58,13 +58,13 @@
       required      
     ></v-text-field>
 
-      <!--  <v-select
+        <v-select
       v-model="select"
       :items="items"
       :rules="[v => !!v || 'Item is required']"
       label="Indique qué rol desempeña en el equipo"
       required
-    ></v-select>-->
+    ></v-select>
 
     <v-container fluid>
       <v-textarea
@@ -126,11 +126,11 @@
 
 
       <tbody>
-          <tr v-for="datosFormulario in listaDatos" :key="datosFormulario.datosFormulario.nombre">
-            <td>{{datosFormulario.nombre }}</td>
-            <td>{{datosFormulario.telefono }}</td>
-            <td>{{datosFormulario.email }}</td>
-             <td>{{datosFormulario.descripcion }}</td> 
+          <tr v-for="datos in listaDatos" :key="datos.nombre">
+            <td>{{datos.nombre }}</td>
+            <td>{{datos.telefono }}</td>
+            <td>{{datos.email }}</td>
+             <td>{{datos.descripcion }}</td> 
           </tr>
         </tbody>
      </template>
@@ -200,17 +200,16 @@ export default {
     return {
       customWidth: '1138px',
       customHeight: '870px', 
-          select: null,
-         formularioEnviado: false,
-           datosFormulario: {
+         valid:false,         
+         datosFormulario: {
             nombre:"",
             email:"",
             telefono:"",
-            rolSeleccionado:"",                     
-            confirmacion:null        
+            descripcion:"",                     
+                   
                      
            }, 
-            listaDatos: [],
+          
            objetoLocal: {},
       items: [
         'Lider',
@@ -234,18 +233,17 @@ export default {
       descriptionRules: [
         v => (v && v.length >= 15) || "El comentario debe tener al menos 15 caracteres"
       ],
-      enviado: false,
-      errores: [],      
+       listaDatos: [],
+           
     };  
     
     
    },
     
      methods: {
-    guardar() {
+     guardar() {
 
-      this.enviado=true;  //queremos evaluar que los mensajes se muestren solo cuando se ejecute la funcion
-      this.errores=[]  //vaciamos el array de errores
+      
 
       if (this.$refs.form.validate()) {  
        if (
@@ -304,14 +302,21 @@ export default {
       telefono: this.contacto.telefono,
       descripcion: this.contacto.descripcion
       };
-       this.objetoLocal = {
-         comentario: this.datosFormulario.comentario,
+       this.listaDatos.push ({
+         descripcion: this.datosFormulario.descripcion,
          nombre: this.datosFormulario.nombre,
          email: this.datosFormulario.email,
          telefono: this.datosFormulario.telefono,
          rol: this.datosFormulario.rolSeleccionado
-       };
-      this.formularioEnviado = true;
+       });
+       
+           // Reiniciar los datos del formulario
+        this.datosFormulario.nombre = '';
+        this.datosFormulario.telefono = '';
+        this.datosFormulario.email = '';
+        this.datosFormulario.descripcion = '';    
+    
+      /*this.formularioEnviado = true;*/
 
 
       console.log(this.errores)
@@ -335,8 +340,10 @@ export default {
 
         }
 
-            this.arr.push(this.objetoLocal)
-            localStorage.setItem("datoComentario",JSON.stringify(this.arr))
+         /*   this.arr.push(this.objetoLocal)
+            localStorage.setItem("datoComentario",JSON.stringify(this.arr))*/
+            // Guardar los datos en el almacenamiento local
+        localStorage.setItem('listaDatos', JSON.stringify(this.listaDatos));
 
             
             
@@ -346,7 +353,15 @@ export default {
 
    
     
-  }
+  },
+  mounted() {
+    // Cargar los datos del almacenamiento local al iniciar la página
+    const storedData = localStorage.getItem('listaDatos');
+    if (storedData) {
+      this.listaDatos = JSON.parse(storedData);
+    }
+  },
+
 };
 
 </script>
