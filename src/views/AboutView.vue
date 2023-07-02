@@ -4,7 +4,7 @@
       Formulario de contacto entre los equipos
     </p>
 
-     <v-card class="mx-auto" :width="customWidth" color="#FFAB91" outlined>
+     <v-card class="mx-auto" :width="customWidth" color="#C8E6C9" outlined>
       <v-row> 
       <v-col cols="6">      
           <v-card-text>
