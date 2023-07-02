@@ -1,5 +1,7 @@
 
 
+
+  
 <template>
   <div class="about">
    <p class="font-weight-bold w-400 display-1 text-center my-4">
@@ -56,13 +58,13 @@
       required      
     ></v-text-field>
 
-        <v-select
+      <!--  <v-select
       v-model="select"
       :items="items"
       :rules="[v => !!v || 'Item is required']"
       label="Indique qué rol desempeña en el equipo"
       required
-    ></v-select>
+    ></v-select>-->
 
     <v-container fluid>
       <v-textarea
@@ -86,7 +88,7 @@
     ></v-img>
         
     
-
+    </template>
 
 
 
