@@ -41,7 +41,7 @@
     ></v-text-field>
     <v-text-field
       v-model="responsableProyecto"
-      :rules="emailRules"
+      :rules="phoneRules"
       label="Ingrese su telefono"
       required      
     ></v-text-field>
@@ -149,6 +149,7 @@ export default {
             confirmacion:null        
                      
            }, 
+           objetoLocal: {},
       items: [
         'Lider',
         'Desarrollador',
@@ -157,7 +158,21 @@ export default {
       ],
       checkbox: false,
 
-    };
+      nameRules: [v => !!v || "Nombre del equipo es obligatorio"],
+      phoneRules: [
+        v => !!v || "Teléfono es obligatorio",
+        v => /^\d{10}$/.test(v) || "Formato de teléfono inválido"
+      ],
+      emailRules: [
+        v => !!v || "Email es obligatorio",
+        v => /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(v) ||
+          "Formato de email inválido"
+      ],
+     
+      descriptionRules: [
+        v => (v && v.length >= 15) || "El comentario debe tener al menos 15 caracteres"
+      ]
+    };    
    },
     
      methods: {
@@ -203,6 +218,8 @@ export default {
         this.errores.push('Debes confirmar que los datos son correctos')
           
       }
+
+       let objetoLocal = {};
 
 
       console.log(this.errores)
