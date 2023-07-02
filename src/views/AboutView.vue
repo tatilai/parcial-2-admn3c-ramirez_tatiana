@@ -5,11 +5,11 @@
     </p>
       <v-card
     class="mx-auto"
-    max-width="1138"
-    max-height="572"
+    :width="customWidth"
+    :height="customHeight"
     color="#FFAB91"
     outlined
-  >
+    >
     <v-list-item three-line>
       <v-list-item-content>
         <div class="text-overline mb-4">
@@ -40,6 +40,20 @@
   </v-card>
   </div>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      customWidth: '1138px', // Establece el ancho personalizado aquí
+      customHeight: '572px', // Establece el alto personalizado aquí
+    };
+  },
+  // Resto del código del componente
+};
+</script>
+
 
 
 
