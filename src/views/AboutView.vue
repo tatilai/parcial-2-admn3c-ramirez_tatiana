@@ -181,6 +181,18 @@ export default {
       this.enviado=true;  //queremos evaluar que los mensajes se muestren solo cuando se ejecute la funcion
       this.errores=[]  //vaciamos el array de errores
 
+      if (this.$refs.form.validate()) {  
+       if (
+        this.nombreProyecto.trim().length === 0 ||
+        this.responsableProyecto.trim().length === 0 ||
+        this.emailProyecto.trim().length === 0
+      ) {
+        // Mostrar mensaje de error
+        this.valid = false;
+        this.mostrarError = true;
+        return;
+      }}
+
       if(!this.contacto.nombre){
 
        console.log(!this.contacto.nombre)
