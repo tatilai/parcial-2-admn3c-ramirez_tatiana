@@ -12,12 +12,13 @@
     </p>
    <v-img
   :lazy-src="require('@/assets/equipo_1.png')"
-  max-height="205"
-  max-width="205"
-  blur="0"
-  class="mx-auto"
-></v-img>
-<div class="max-w-md mx-auto"> 
+   max-height="205"
+   max-width="205"
+   blur="0"
+   class="mx-auto"
+  ></v-img>
+
+<div class="formularioUno"> 
    <v-text-field
       v-model="nombre"
       :counter="10"
@@ -49,17 +50,48 @@
      Continuar
     </v-btn> 
     </div>
+
+
+
    
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  data: () => ({
+    valid: true,
+    name: '',
+    nameRules: [
+      v => !!v || 'Name is required',
+      v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+    ],
+    email: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    ],
+   
+  }),
+
+  methods: {
+    validate() {
+      this.$refs.form.validate()
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation()
+    },
+  },
 }
+
 
 
 </script>
