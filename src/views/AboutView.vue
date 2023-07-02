@@ -104,7 +104,7 @@
      Info del formulario enviado
     </p>
 
-    <v-simple-table dark class="my-20 mx-auto">
+    <v-simple-table dark class="my-20 formularioDos" >
     <template v-slot:default>
       <thead>
         <tr>
@@ -126,7 +126,7 @@
 
 
       <tbody>
-          <tr v-for="proyecto in listaProyectos" :key="proyecto.nombreProyecto">
+          <tr v-for="proyecto in listaDatos" :key="proyecto.nombreProyecto">
             <td>{{ proyecto.nombreProyecto }}</td>
             <td>{{ proyecto.descripcionProyecto }}</td>
             <td>{{ proyecto.responsableProyecto }}</td>
@@ -210,6 +210,7 @@ export default {
             confirmacion:null        
                      
            }, 
+            listaDatos: [],
            objetoLocal: {},
       items: [
         'Lider',
@@ -353,6 +354,11 @@ export default {
 <style scoped>
 .v-image__image--preload{
   filter: blur(0);
+}
+
+.formularioDos{
+   margin: 0 auto;
+ 
 }
 
 </style>
