@@ -20,7 +20,9 @@
   ></v-img>
 
 <div class="formularioUno"> 
-  <v-form ref="form">
+  <v-form ref="form"
+   v-model="valid"
+    lazy-validation>
    <v-text-field
       v-model="nombre"
       :counter="10"
