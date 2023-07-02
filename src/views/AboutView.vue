@@ -57,7 +57,9 @@
       </v-card-text>
     </v-card>
 
-    <h2>Información del formulario enviado</h2>
+    <p class="font-weight-bold w-400 display-1 text-center my-4">
+     Info del formulario enviado
+    </p>
 
     <v-card>
       <v-card-text>
