@@ -7,7 +7,16 @@
 
 <template>
   <div>
-    <span>Equipo 1</span>
+     <p class="font-weight-bold w-400 display-1 mx-auto">
+      Equipo 1
+    </p>
+   <v-img
+  :lazy-src="require('@/assets/equipo_1.png')"
+  max-height="205"
+  max-width="205"
+  blur=0
+  class="mx-auto"
+></v-img>
     <v-text-field
       v-model="nombre"
       :counter="10"
