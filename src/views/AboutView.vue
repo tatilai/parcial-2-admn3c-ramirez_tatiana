@@ -16,17 +16,22 @@
 
 
     <v-img
-    :lazy-src="require('@/assets/trabajo.png')"
-     alt="Descripción de la imagen"
-     aspect-ratio="16/9"
-    :fluid="true"
+    :src="require('@/assets/trabajo.png')"
+    alt="gente sentada"
+    :max-width="355"
+    :max-height="289"   
+    class="my-4 v-image__image--preload"
     ></v-img>
 
+
+
     <v-card-actions>
+      <v-spacer></v-spacer>
       <v-btn
         outlined
         rounded
         text
+        style="margin-right:30px"       
       >
         Button
       </v-btn>
@@ -47,6 +52,13 @@ export default {
   // Resto del código del componente
 };
 </script>
+
+<style scoped>
+.v-image__image--preload{
+  filter: blur(0);
+}
+
+</style>
 
 
 

@@ -11,7 +11,7 @@
       Equipo 1
     </p>
    <v-img
-  :lazy-src="require('@/assets/equipo_1.png')"
+  :src="require('@/assets/equipo_1.png')"
    max-height="205"
    max-width="205"
    blur="0"
